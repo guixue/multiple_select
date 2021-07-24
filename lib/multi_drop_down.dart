@@ -11,6 +11,7 @@ class MultipleDropDown extends StatefulWidget {
   final List<MultipleSelectItem> elements;
   final String? placeholder;
   final bool disabled;
+  final VoidCallback? onClose;
 
   MultipleDropDown({
     Key? key,
@@ -18,8 +19,8 @@ class MultipleDropDown extends StatefulWidget {
     required this.elements,
     this.placeholder,
     this.disabled = false,
-  })  : assert(values != null),
-        super(key: key);
+    this.onClose,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => MultipleDropDownState();
@@ -35,7 +36,7 @@ class MultipleDropDownState extends State<MultipleDropDown> {
             child: Opacity(
               opacity: this.widget.disabled ? 0.4 : 1,
               child: Container(
-                margin: EdgeInsets.only(right: 8),
+                // margin: EdgeInsets.only(right: 8),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -66,6 +67,10 @@ class MultipleDropDownState extends State<MultipleDropDown> {
             title: this.widget.placeholder,
           ).then((values) {
             this.setState(() {});
+            print("on close");
+            if (widget.onClose != null) {
+              widget.onClose!();
+            }
           });
       },
     );
@@ -76,13 +81,9 @@ class MultipleDropDownState extends State<MultipleDropDown> {
       return Padding(
         child: Text(
           this.widget.placeholder!,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.black54,
-            decoration: TextDecoration.none,
-          ),
+          style: TextStyle(fontSize: 14, color: Colors.black54),
         ),
-        padding: EdgeInsets.only(top: 8, bottom: 8, left: 10),
+        padding: EdgeInsets.only(top: 8, bottom: 8, left: 0),
       );
     } else {
       return Wrap(
@@ -91,11 +92,14 @@ class MultipleDropDownState extends State<MultipleDropDown> {
             .elements
             .where((element) => this.widget.values.contains(element.value))
             .map(
-              (element) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 1),
+              (element) => Container(
+                margin: EdgeInsets.only(right: 2),
                 child: RawChip(
                   isEnabled: !this.widget.disabled,
-                  label: Text(element.display),
+                  label: Text(
+                    element.display,
+                    style: TextStyle(fontSize: 12),
+                  ),
                   onDeleted: () {
                     if (!this.widget.disabled) {
                       this.widget.values.remove(element.value);

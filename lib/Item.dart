@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Item<V, D, C> {
   V value;
 

@@ -15,7 +15,8 @@ class MultipleSelect {
     return Navigator.push(
       context,
       MultipleSelectRoute<List>(
-        barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         elements: elements,
         values: values,
         title: title,
@@ -51,13 +52,14 @@ class MultipleSelectRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController = BottomSheet.createAnimationController(navigator!.overlay!);
+    _animationController =
+        BottomSheet.createAnimationController(navigator!.overlay!);
     return _animationController!;
   }
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     Widget bottomSheet = new MediaQuery.removePadding(
       removeTop: true,
       context: context,
@@ -68,9 +70,7 @@ class MultipleSelectRoute<T> extends PopupRoute<T> {
       ),
     );
     ThemeData theme = Theme.of(context);
-    if (theme != null) {
-      bottomSheet = new Theme(data: theme, child: bottomSheet);
-    }
+    bottomSheet = new Theme(data: theme, child: bottomSheet);
     return bottomSheet;
   }
 }
@@ -139,7 +139,8 @@ class SelectorListState extends State<SelectorList> {
                         this.setState(() {});
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
@@ -180,8 +181,8 @@ class SelectorListState extends State<SelectorList> {
           ),
           decoration: BoxDecoration(
               color: Colors.grey[200],
-              borderRadius:
-                  BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               boxShadow: [
                 BoxShadow(color: Colors.black54, blurRadius: 5.0),
               ]),
@@ -202,7 +203,8 @@ class SelectorListState extends State<SelectorList> {
           onTap: () => Navigator.pop(context, values),
           child: Container(
             decoration: BoxDecoration(
-              border: Border(top: BorderSide(width: 2, color: Colors.grey[350]!)),
+              border:
+                  Border(top: BorderSide(width: 2, color: Colors.grey[350]!)),
               color: Colors.grey[200],
             ),
             child: Container(

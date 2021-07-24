@@ -9,6 +9,9 @@ description: A new Flutter application.
 # Read more about versioning at semver.org.
 version: 1.0.0+1
 
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
